@@ -19,12 +19,6 @@ const taskSchema = mongoose.Schema({
   timestamps: true
 });
 
-taskSchema.pre('save', async function (next) {
-  console.log('in task pre-save hook');
-  next();
-});
-
-
 const Task = mongoose.model('Task', taskSchema);
 
 module.exports = Task;

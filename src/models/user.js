@@ -104,7 +104,6 @@ userSchema.statics.findByCredentials = async (email, password) => {
 // need access to this to work with the user being saved, so can't use arrow function
 // password encryption
 userSchema.pre('save', async function (next) {
-  console.log('in user pre-save hook, encrypt password');
   if (this.isModified('password')) {
     this.password = await bcrypt.hash(this.password, 8);
   }
@@ -112,7 +111,6 @@ userSchema.pre('save', async function (next) {
 });
 
 userSchema.pre('remove', async function (next) {
-  console.log('in user pre-remove hook, delete tasks');
   await Task.deleteMany({owner: this._id});
   next();
 });

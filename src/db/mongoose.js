@@ -1,8 +1,11 @@
 const mongoose = require('mongoose');
 
-const dbName = 'task-manager-api';
+const dbUser = process.env.MONGODB_USER;
+const dbPass = process.env.MONGODB_PASSWORD;
+const cluster = process.env.MONGODB_CLUSTER;
+const dbName = process.env.MONGODB_NAME;
 const connectOptions = '?retryWrites=true&w=majority'
-const connectionURL = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_CLUSTER}/${dbName}${connectOptions}`;
+const connectionURL = `mongodb+srv://${dbUser}:${dbPass}@${cluster}/${dbName}${connectOptions}`;
 
 mongoose.connect(connectionURL, {
   useNewUrlParser: true, 

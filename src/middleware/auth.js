@@ -2,7 +2,6 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 
 const auth = async (req, res, next) => {
-  console.log('auth middleware');
   try {
     const token = req.headers.authorization.replace('Bearer ', '');
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
@@ -15,7 +14,6 @@ const auth = async (req, res, next) => {
       throw new Error;
     }
   } catch (e) {
-    console.log(e);
     res.status(401).send({error: 'Please log in'});
   }
 }
